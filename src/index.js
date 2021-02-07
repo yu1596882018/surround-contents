@@ -71,10 +71,14 @@ export const findTextNode = (node) => {
   }
 }
 
-// 原生surroundContents加强版
+/**
+ * 原生surroundContents加强版
+ * @param rangeAt {Range} 需要处理的 Range 对象
+ * @param newDomMethod {Function} 创建新节点的函数，由于有跨边界的情况，每次需要创建新的节点，不能复用同一个节点
+ */
 const surroundContents = (rangeAt, newDomMethod) => {
   newDomMethod && (config.newDomMethod = newDomMethod)
-  const { commonAncestorContainer, startContainer, startOffset, endContainer, endOffset } = rangeAt
+  const {commonAncestorContainer, startContainer, startOffset, endContainer, endOffset} = rangeAt
   // console.log(rangeAt)
 
   const commonAncestorStartParent = getCommonAncestorParentAndJudge(startContainer, commonAncestorContainer)

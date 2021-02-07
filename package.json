@@ -1,13 +1,19 @@
 {
   "name": "surround-contents",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "0.0.1",
   "repository": "https://github.com/yu1596882018/surroundContents.git",
   "author": "wangxinyu <xinyu.wang@hexasino.com>",
+  "keywords": [
+    "surroundContents",
+    "rangeAt",
+    "批注"
+  ],
   "license": "MIT",
   "scripts": {
     "build": "father-build"
   },
+  "main": "lib/index.js",
+  "module": "es/index.js",
   "devDependencies": {
     "father-build": "^1.19.1"
   }

@@ -1,6 +1,6 @@
 {
   "name": "surround-contents",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "repository": "https://github.com/yu1596882018/surroundContents.git",
   "author": "yu1596882018 <1596882018@qq.com>",
   "keywords": [
@@ -16,5 +16,6 @@
   "module": "es/index.js",
   "devDependencies": {
     "father-build": "^1.19.1"
-  }
+  },
+  "dependencies": {}
 }

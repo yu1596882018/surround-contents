@@ -18,3 +18,19 @@ surroundContents(getSelection().getRangeAt(0), () => {
 | :-----| ----: | :----: | :----:  | :----: |
 | rangeAt | `true` | `Range` | `null` | 需要处理的 Range 对象 |
 | newDomMethod | `false` | `Function` | `() => document.createElement('span')` | 创建新节点的函数，由于有跨边界的情况，每次需要创建新的节点，不能复用同一个节点 |
+
+### 安装
+```bash
+npm install surround-contents
+# 或
+yarn add surround-contents
+```
+
+### 贡献
+欢迎提 issue 或 PR！
+
+### License
+MIT
+
+### 变更日志
+详见 [CHANGELOG.md](./CHANGELOG.md)

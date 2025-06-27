@@ -22,7 +22,10 @@ export const getCommonAncestorParent = (findNode, commonAncestorContainer) => {
 }
 
 // 递归获取共同父级节点以下的顶级子节点
-export const getCommonAncestorParentAndJudge = (findNode, commonAncestorContainer) => {
+export const getCommonAncestorParentAndJudge = (
+  findNode,
+  commonAncestorContainer
+) => {
   if (commonAncestorContainer !== findNode) {
     return getCommonAncestorParent(findNode, commonAncestorContainer)
   } else {
@@ -31,26 +34,43 @@ export const getCommonAncestorParentAndJudge = (findNode, commonAncestorContaine
 }
 
 // 获取开始到结束的中间节点
-export const searchStartArriveEndMiddleNode = (startContainer, commonAncestorStartParent, commonAncestorEndParent) => {
+export const searchStartArriveEndMiddleNode = (
+  startContainer,
+  commonAncestorStartParent,
+  commonAncestorEndParent
+) => {
   let currentNode = startContainer
-  while (currentNode.nextSibling && currentNode.nextSibling !== commonAncestorEndParent) {
+  while (
+    currentNode.nextSibling &&
+    currentNode.nextSibling !== commonAncestorEndParent
+  ) {
     currentNode = currentNode.nextSibling
     findTextNode(currentNode)
   }
   if (startContainer !== commonAncestorStartParent) {
-    searchStartArriveEndMiddleNode(startContainer.parentElement, commonAncestorStartParent, commonAncestorEndParent)
+    searchStartArriveEndMiddleNode(
+      startContainer.parentElement,
+      commonAncestorStartParent,
+      commonAncestorEndParent
+    )
   }
 }
 
 // 获取结束节点到顶级子节点的前面所有节点
-export const searchEndArriveParentPreviousNode = (endContainer, commonAncestorEndParent) => {
+export const searchEndArriveParentPreviousNode = (
+  endContainer,
+  commonAncestorEndParent
+) => {
   let currentNode = endContainer
   while (currentNode.previousSibling) {
     currentNode = currentNode.previousSibling
     findTextNode(currentNode)
   }
   if (endContainer.parentElement !== commonAncestorEndParent) {
-    searchEndArriveParentPreviousNode(endContainer.parentElement, commonAncestorEndParent)
+    searchEndArriveParentPreviousNode(
+      endContainer.parentElement,
+      commonAncestorEndParent
+    )
   }
 }
 
@@ -78,16 +98,32 @@ export const findTextNode = (node) => {
  */
 const surroundContents = (rangeAt, newDomMethod) => {
   newDomMethod && (config.newDomMethod = newDomMethod)
-  const {commonAncestorContainer, startContainer, startOffset, endContainer, endOffset} = rangeAt
+  const {
+    commonAncestorContainer,
+    startContainer,
+    startOffset,
+    endContainer,
+    endOffset,
+  } = rangeAt
   // console.log(rangeAt)
 
-  const commonAncestorStartParent = getCommonAncestorParentAndJudge(startContainer, commonAncestorContainer)
-  const commonAncestorEndParent = getCommonAncestorParentAndJudge(endContainer, commonAncestorContainer)
+  const commonAncestorStartParent = getCommonAncestorParentAndJudge(
+    startContainer,
+    commonAncestorContainer
+  )
+  const commonAncestorEndParent = getCommonAncestorParentAndJudge(
+    endContainer,
+    commonAncestorContainer
+  )
 
   if (startContainer !== endContainer) {
     // console.log('findTextNode-text', startContainer.nodeValue.slice(startOffset))
     // console.log('findTextNode-text', endContainer.nodeValue.slice(0, endOffset))
-    searchStartArriveEndMiddleNode(startContainer, commonAncestorStartParent, commonAncestorEndParent)
+    searchStartArriveEndMiddleNode(
+      startContainer,
+      commonAncestorStartParent,
+      commonAncestorEndParent
+    )
     if (commonAncestorEndParent !== endContainer) {
       searchEndArriveParentPreviousNode(endContainer, commonAncestorEndParent)
     }

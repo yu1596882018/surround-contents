@@ -14,10 +14,16 @@ surroundContents(getSelection().getRangeAt(0), () => {
 })
 ```
 ### 参数
-| 参数名 | 是否必填 | 类型 | 默认值 | 描述 |
-| :-----| ----: | :----: | :----:  | :----: |
-| rangeAt | `true` | `Range` | `null` | 需要处理的 Range 对象 |
-| newDomMethod | `false` | `Function` | `() => document.createElement('span')` | 创建新节点的函数，由于有跨边界的情况，每次需要创建新的节点，不能复用同一个节点 |
+
+| 参数名         | 类型      | 描述                                                         |
+| -------------- | --------- | ------------------------------------------------------------ |
+| rangeAt        | `Range`   | 必填。需要处理的 Range 对象。默认值：`null`                  |
+| newDomMethod   | `Function`| 选填。创建新节点的函数。默认值见下方代码块。每次需新建节点，不能复用。 |
+
+默认值示例：
+```js
+() => document.createElement('span')
+```
 
 ### 安装
 ```bash
